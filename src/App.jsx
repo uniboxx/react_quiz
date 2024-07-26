@@ -96,7 +96,7 @@ function App() {
   const maxPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
 
   useEffect(function () {
-    fetch('http://localhost:8000/questions')
+    fetch('https://uniboxx.github.io/react_quiz/questions')
       .then(res => res.json())
       .then(data => dispatch({ type: 'dataReceived', payload: data }))
       .catch(err => dispatch({ type: 'dataFailed' }));
