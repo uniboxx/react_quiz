@@ -232,20 +232,15 @@ function QuizProvider({ children }) {
 
   const numQuestions = questions.length;
   const maxPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
+  const question = questions[index];
 
   useEffect(function () {
-    // fetch('http://localhost:8000/questions')
-    //   .then(res => {
-    //     console.log(res);
-    //     res.json();
-    //   })
-    //   .then(data => {
-    //     console.log(data);
-    //     dispatch({ type: 'dataReceived', payload: data });
-    //   })
-    //   .catch(err => dispatch({ type: 'dataFailed' }));
     dispatch({ type: 'dataReceived', payload: questionsJson.questions });
   }, []);
+
+  function newAnswer() {
+    dispatch({ type: 'newAnswer', payload: index });
+  }
 
   return (
     <QuizContext.Provider
@@ -261,6 +256,7 @@ function QuizProvider({ children }) {
         dispatch,
         numQuestions,
         maxPoints,
+        question,
       }}>
       {children}
     </QuizContext.Provider>
